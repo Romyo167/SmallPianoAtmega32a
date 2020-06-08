@@ -1,0 +1,995 @@
+
+Piano.elf:     file format elf32-avr
+
+Sections:
+Idx Name          Size      VMA       LMA       File off  Algn
+  0 .text         00000576  00000000  00000000  00000094  2**1
+                  CONTENTS, ALLOC, LOAD, READONLY, CODE
+  1 .data         00000072  00800060  00000576  0000060a  2**0
+                  CONTENTS, ALLOC, LOAD, DATA
+  2 .bss          00000006  008000d2  008000d2  0000067c  2**0
+                  ALLOC
+  3 .comment      00000030  00000000  00000000  0000067c  2**0
+                  CONTENTS, READONLY
+  4 .note.gnu.avr.deviceinfo 0000003c  00000000  00000000  000006ac  2**2
+                  CONTENTS, READONLY
+  5 .debug_aranges 00000078  00000000  00000000  000006e8  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  6 .debug_info   000010e7  00000000  00000000  00000760  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  7 .debug_abbrev 0000085b  00000000  00000000  00001847  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  8 .debug_line   000007af  00000000  00000000  000020a2  2**0
+                  CONTENTS, READONLY, DEBUGGING
+  9 .debug_frame  00000138  00000000  00000000  00002854  2**2
+                  CONTENTS, READONLY, DEBUGGING
+ 10 .debug_str    00000439  00000000  00000000  0000298c  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 11 .debug_loc    0000085f  00000000  00000000  00002dc5  2**0
+                  CONTENTS, READONLY, DEBUGGING
+ 12 .debug_ranges 00000100  00000000  00000000  00003624  2**0
+                  CONTENTS, READONLY, DEBUGGING
+
+Disassembly of section .text:
+
+00000000 <__vectors>:
+   0:	0c 94 2a 00 	jmp	0x54	; 0x54 <__ctors_end>
+   4:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   8:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+   c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  10:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  14:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  18:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  1c:	0c 94 d1 00 	jmp	0x1a2	; 0x1a2 <__vector_7>
+  20:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  24:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  28:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  2c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  30:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  34:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  38:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  3c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  40:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  44:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  48:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  4c:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+  50:	0c 94 47 00 	jmp	0x8e	; 0x8e <__bad_interrupt>
+
+00000054 <__ctors_end>:
+  54:	11 24       	eor	r1, r1
+  56:	1f be       	out	0x3f, r1	; 63
+  58:	cf e5       	ldi	r28, 0x5F	; 95
+  5a:	d8 e0       	ldi	r29, 0x08	; 8
+  5c:	de bf       	out	0x3e, r29	; 62
+  5e:	cd bf       	out	0x3d, r28	; 61
+
+00000060 <__do_copy_data>:
+  60:	10 e0       	ldi	r17, 0x00	; 0
+  62:	a0 e6       	ldi	r26, 0x60	; 96
+  64:	b0 e0       	ldi	r27, 0x00	; 0
+  66:	e6 e7       	ldi	r30, 0x76	; 118
+  68:	f5 e0       	ldi	r31, 0x05	; 5
+  6a:	02 c0       	rjmp	.+4      	; 0x70 <__do_copy_data+0x10>
+  6c:	05 90       	lpm	r0, Z+
+  6e:	0d 92       	st	X+, r0
+  70:	a2 3d       	cpi	r26, 0xD2	; 210
+  72:	b1 07       	cpc	r27, r17
+  74:	d9 f7       	brne	.-10     	; 0x6c <__do_copy_data+0xc>
+
+00000076 <__do_clear_bss>:
+  76:	20 e0       	ldi	r18, 0x00	; 0
+  78:	a2 ed       	ldi	r26, 0xD2	; 210
+  7a:	b0 e0       	ldi	r27, 0x00	; 0
+  7c:	01 c0       	rjmp	.+2      	; 0x80 <.do_clear_bss_start>
+
+0000007e <.do_clear_bss_loop>:
+  7e:	1d 92       	st	X+, r1
+
+00000080 <.do_clear_bss_start>:
+  80:	a8 3d       	cpi	r26, 0xD8	; 216
+  82:	b2 07       	cpc	r27, r18
+  84:	e1 f7       	brne	.-8      	; 0x7e <.do_clear_bss_loop>
+  86:	0e 94 b2 01 	call	0x364	; 0x364 <main>
+  8a:	0c 94 b9 02 	jmp	0x572	; 0x572 <_exit>
+
+0000008e <__bad_interrupt>:
+  8e:	0c 94 00 00 	jmp	0	; 0x0 <__vectors>
+
+00000092 <lcdCommand>:
+/*void delay_us(int d){
+	_delay_us(d);
+}*/
+
+void lcdCommand(unsigned char cmnd){
+	LCD_DPRT = cmnd & 0xF0;
+  92:	98 2f       	mov	r25, r24
+  94:	90 7f       	andi	r25, 0xF0	; 240
+  96:	92 bb       	out	0x12, r25	; 18
+	LCD_CPRT &= ~(1 << LCD_RS);
+  98:	c0 98       	cbi	0x18, 0	; 24
+	LCD_CPRT &= ~(1 << LCD_RW);
+  9a:	c1 98       	cbi	0x18, 1	; 24
+	LCD_CPRT |= (1 << LCD_EN);
+  9c:	c2 9a       	sbi	0x18, 2	; 24
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+  9e:	00 00       	nop
+	_delay_us(1);
+	LCD_CPRT &= ~(1 << LCD_EN);
+  a0:	c2 98       	cbi	0x18, 2	; 24
+  a2:	91 e2       	ldi	r25, 0x21	; 33
+  a4:	9a 95       	dec	r25
+  a6:	f1 f7       	brne	.-4      	; 0xa4 <lcdCommand+0x12>
+  a8:	00 00       	nop
+	_delay_us(100);
+	LCD_DPRT = cmnd << 4;
+  aa:	82 95       	swap	r24
+  ac:	80 7f       	andi	r24, 0xF0	; 240
+  ae:	82 bb       	out	0x12, r24	; 18
+	LCD_CPRT |= (1 << LCD_EN);
+  b0:	c2 9a       	sbi	0x18, 2	; 24
+  b2:	00 00       	nop
+	_delay_us(1);
+	LCD_CPRT &= ~(1 << LCD_EN);
+  b4:	c2 98       	cbi	0x18, 2	; 24
+  b6:	81 e2       	ldi	r24, 0x21	; 33
+  b8:	8a 95       	dec	r24
+  ba:	f1 f7       	brne	.-4      	; 0xb8 <lcdCommand+0x26>
+  bc:	00 00       	nop
+  be:	08 95       	ret
+
+000000c0 <lcdData>:
+	_delay_us(100);
+}
+
+void lcdData(unsigned char data){
+	LCD_DPRT = data & 0xF0;
+  c0:	98 2f       	mov	r25, r24
+  c2:	90 7f       	andi	r25, 0xF0	; 240
+  c4:	92 bb       	out	0x12, r25	; 18
+	LCD_CPRT |= (1 << LCD_RS);
+  c6:	c0 9a       	sbi	0x18, 0	; 24
+	LCD_CPRT &= ~(1 << LCD_RW);
+  c8:	c1 98       	cbi	0x18, 1	; 24
+	LCD_CPRT |= (1 << LCD_EN);
+  ca:	c2 9a       	sbi	0x18, 2	; 24
+  cc:	00 00       	nop
+	_delay_us(1);
+	LCD_CPRT &= ~(1 << LCD_EN);
+  ce:	c2 98       	cbi	0x18, 2	; 24
+	LCD_DPRT = data << 4;
+  d0:	82 95       	swap	r24
+  d2:	80 7f       	andi	r24, 0xF0	; 240
+  d4:	82 bb       	out	0x12, r24	; 18
+	LCD_CPRT |= (1 << LCD_EN);
+  d6:	c2 9a       	sbi	0x18, 2	; 24
+  d8:	00 00       	nop
+	_delay_us(1);
+	LCD_CPRT &= ~(1 << LCD_EN);
+  da:	c2 98       	cbi	0x18, 2	; 24
+  dc:	81 e2       	ldi	r24, 0x21	; 33
+  de:	8a 95       	dec	r24
+  e0:	f1 f7       	brne	.-4      	; 0xde <lcdData+0x1e>
+  e2:	00 00       	nop
+  e4:	08 95       	ret
+
+000000e6 <lcd_init>:
+	_delay_us(100);
+}
+
+void lcd_init(){
+	LCD_DDDR |= 0xF0;
+  e6:	81 b3       	in	r24, 0x11	; 17
+  e8:	80 6f       	ori	r24, 0xF0	; 240
+  ea:	81 bb       	out	0x11, r24	; 17
+	LCD_CDDR |= 0x07;
+  ec:	87 b3       	in	r24, 0x17	; 23
+  ee:	87 60       	ori	r24, 0x07	; 7
+  f0:	87 bb       	out	0x17, r24	; 23
+	LCD_CPRT &= ~(1 << LCD_EN);
+  f2:	c2 98       	cbi	0x18, 2	; 24
+	lcdCommand(0x33);
+  f4:	83 e3       	ldi	r24, 0x33	; 51
+  f6:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+	lcdCommand(0x32);          
+  fa:	82 e3       	ldi	r24, 0x32	; 50
+  fc:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+	lcdCommand(0x28);   
+ 100:	88 e2       	ldi	r24, 0x28	; 40
+ 102:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+	lcdCommand(0x0e);   // display on , cursor on
+ 106:	8e e0       	ldi	r24, 0x0E	; 14
+ 108:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+	lcdCommand(0x01);   // clear lcd
+ 10c:	81 e0       	ldi	r24, 0x01	; 1
+ 10e:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+ 112:	83 ef       	ldi	r24, 0xF3	; 243
+ 114:	91 e0       	ldi	r25, 0x01	; 1
+ 116:	01 97       	sbiw	r24, 0x01	; 1
+ 118:	f1 f7       	brne	.-4      	; 0x116 <lcd_init+0x30>
+ 11a:	00 c0       	rjmp	.+0      	; 0x11c <lcd_init+0x36>
+ 11c:	00 00       	nop
+	_delay_us(2000);
+	lcdCommand(0x06);
+ 11e:	86 e0       	ldi	r24, 0x06	; 6
+ 120:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+ 124:	08 95       	ret
+
+00000126 <lcd_gotoxy>:
+}
+
+void lcd_gotoxy(unsigned char x, unsigned char y){
+ 126:	cf 93       	push	r28
+ 128:	df 93       	push	r29
+ 12a:	00 d0       	rcall	.+0      	; 0x12c <lcd_gotoxy+0x6>
+ 12c:	00 d0       	rcall	.+0      	; 0x12e <lcd_gotoxy+0x8>
+ 12e:	cd b7       	in	r28, 0x3d	; 61
+ 130:	de b7       	in	r29, 0x3e	; 62
+	unsigned char firstCharAdr[] = { 0x80 , 0xC0 ,0x94 , 0xD4};
+ 132:	90 e8       	ldi	r25, 0x80	; 128
+ 134:	99 83       	std	Y+1, r25	; 0x01
+ 136:	90 ec       	ldi	r25, 0xC0	; 192
+ 138:	9a 83       	std	Y+2, r25	; 0x02
+ 13a:	94 e9       	ldi	r25, 0x94	; 148
+ 13c:	9b 83       	std	Y+3, r25	; 0x03
+ 13e:	94 ed       	ldi	r25, 0xD4	; 212
+ 140:	9c 83       	std	Y+4, r25	; 0x04
+		lcdCommand(firstCharAdr[y-1] + x - 1);
+ 142:	fe 01       	movw	r30, r28
+ 144:	e6 0f       	add	r30, r22
+ 146:	f1 1d       	adc	r31, r1
+ 148:	81 50       	subi	r24, 0x01	; 1
+ 14a:	90 81       	ld	r25, Z
+ 14c:	89 0f       	add	r24, r25
+ 14e:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+ 152:	81 e2       	ldi	r24, 0x21	; 33
+ 154:	8a 95       	dec	r24
+ 156:	f1 f7       	brne	.-4      	; 0x154 <lcd_gotoxy+0x2e>
+ 158:	00 00       	nop
+		_delay_us(100);
+}
+ 15a:	0f 90       	pop	r0
+ 15c:	0f 90       	pop	r0
+ 15e:	0f 90       	pop	r0
+ 160:	0f 90       	pop	r0
+ 162:	df 91       	pop	r29
+ 164:	cf 91       	pop	r28
+ 166:	08 95       	ret
+
+00000168 <lcd_print>:
+
+void lcd_print(char * str){
+ 168:	0f 93       	push	r16
+ 16a:	1f 93       	push	r17
+ 16c:	cf 93       	push	r28
+ 16e:	fc 01       	movw	r30, r24
+	unsigned char i = 0;
+	while(str[i] != 0)
+ 170:	80 81       	ld	r24, Z
+ 172:	88 23       	and	r24, r24
+ 174:	59 f0       	breq	.+22     	; 0x18c <lcd_print+0x24>
+ 176:	8f 01       	movw	r16, r30
+ 178:	c0 e0       	ldi	r28, 0x00	; 0
+	{
+		lcdData(str[i]);
+ 17a:	0e 94 60 00 	call	0xc0	; 0xc0 <lcdData>
+		i++;
+ 17e:	cf 5f       	subi	r28, 0xFF	; 255
+		_delay_us(100);
+}
+
+void lcd_print(char * str){
+	unsigned char i = 0;
+	while(str[i] != 0)
+ 180:	f8 01       	movw	r30, r16
+ 182:	ec 0f       	add	r30, r28
+ 184:	f1 1d       	adc	r31, r1
+ 186:	80 81       	ld	r24, Z
+ 188:	81 11       	cpse	r24, r1
+ 18a:	f7 cf       	rjmp	.-18     	; 0x17a <lcd_print+0x12>
+	{
+		lcdData(str[i]);
+		i++;
+	}
+}
+ 18c:	cf 91       	pop	r28
+ 18e:	1f 91       	pop	r17
+ 190:	0f 91       	pop	r16
+ 192:	08 95       	ret
+
+00000194 <initTimer1>:
+	TCCR0 |= (1 << COM00); /* Toggles pin each cycle through */
+	TCCR0 |= (1 << CS01) ; /* CPU clock / /1 */ /*count in microsetonds*/
+}
+
+void initTimer1(void){
+	TCCR1B |= (1 << CS12) | (1 << WGM12);
+ 194:	8e b5       	in	r24, 0x2e	; 46
+ 196:	8c 60       	ori	r24, 0x0C	; 12
+ 198:	8e bd       	out	0x2e, r24	; 46
+	TIMSK |= (1 << OCIE1A) ;
+ 19a:	89 b7       	in	r24, 0x39	; 57
+ 19c:	80 61       	ori	r24, 0x10	; 16
+ 19e:	89 bf       	out	0x39, r24	; 57
+ 1a0:	08 95       	ret
+
+000001a2 <__vector_7>:
+}
+int i = 0x30;
+ISR(TIMER1_COMPA_vect){
+ 1a2:	1f 92       	push	r1
+ 1a4:	0f 92       	push	r0
+ 1a6:	0f b6       	in	r0, 0x3f	; 63
+ 1a8:	0f 92       	push	r0
+ 1aa:	11 24       	eor	r1, r1
+ 1ac:	2f 93       	push	r18
+ 1ae:	3f 93       	push	r19
+ 1b0:	4f 93       	push	r20
+ 1b2:	5f 93       	push	r21
+ 1b4:	6f 93       	push	r22
+ 1b6:	7f 93       	push	r23
+ 1b8:	8f 93       	push	r24
+ 1ba:	9f 93       	push	r25
+ 1bc:	af 93       	push	r26
+ 1be:	bf 93       	push	r27
+ 1c0:	cf 93       	push	r28
+ 1c2:	ef 93       	push	r30
+ 1c4:	ff 93       	push	r31
+	if(markStart == 0){
+ 1c6:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 1ca:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__data_start+0x1>
+ 1ce:	89 2b       	or	r24, r25
+ 1d0:	09 f0       	breq	.+2      	; 0x1d4 <__vector_7+0x32>
+ 1d2:	b6 c0       	rjmp	.+364    	; 0x340 <__vector_7+0x19e>
+	lcd_gotoxy(last_pos , 2);
+ 1d4:	62 e0       	ldi	r22, 0x02	; 2
+ 1d6:	80 91 d6 00 	lds	r24, 0x00D6	; 0x8000d6 <last_pos>
+ 1da:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+	lcdData(' ');
+ 1de:	80 e2       	ldi	r24, 0x20	; 32
+ 1e0:	0e 94 60 00 	call	0xc0	; 0xc0 <lcdData>
+	int last_tone = happyBirthday[iterator][1];
+ 1e4:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 1e8:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 1ec:	fc 01       	movw	r30, r24
+ 1ee:	ee 0f       	add	r30, r30
+ 1f0:	ff 1f       	adc	r31, r31
+ 1f2:	e8 0f       	add	r30, r24
+ 1f4:	f9 1f       	adc	r31, r25
+ 1f6:	ee 59       	subi	r30, 0x9E	; 158
+ 1f8:	ff 4f       	sbci	r31, 0xFF	; 255
+ 1fa:	21 81       	ldd	r18, Z+1	; 0x01
+	iterator++;
+ 1fc:	01 96       	adiw	r24, 0x01	; 1
+ 1fe:	90 93 d5 00 	sts	0x00D5, r25	; 0x8000d5 <iterator+0x1>
+ 202:	80 93 d4 00 	sts	0x00D4, r24	; 0x8000d4 <iterator>
+	
+	OCR1A = happyBirthday[iterator][0] * TonePeriodUnit;
+ 206:	fc 01       	movw	r30, r24
+ 208:	ee 0f       	add	r30, r30
+ 20a:	ff 1f       	adc	r31, r31
+ 20c:	8e 0f       	add	r24, r30
+ 20e:	9f 1f       	adc	r25, r31
+ 210:	fc 01       	movw	r30, r24
+ 212:	ee 59       	subi	r30, 0x9E	; 158
+ 214:	ff 4f       	sbci	r31, 0xFF	; 255
+ 216:	30 81       	ld	r19, Z
+ 218:	40 ed       	ldi	r20, 0xD0	; 208
+ 21a:	57 e0       	ldi	r21, 0x07	; 7
+ 21c:	34 9f       	mul	r19, r20
+ 21e:	c0 01       	movw	r24, r0
+ 220:	35 9f       	mul	r19, r21
+ 222:	90 0d       	add	r25, r0
+ 224:	11 24       	eor	r1, r1
+ 226:	9b bd       	out	0x2b, r25	; 43
+ 228:	8a bd       	out	0x2a, r24	; 42
+	char Tone = happyBirthday[iterator][1] ;
+ 22a:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 22e:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 232:	fc 01       	movw	r30, r24
+ 234:	ee 0f       	add	r30, r30
+ 236:	ff 1f       	adc	r31, r31
+ 238:	e8 0f       	add	r30, r24
+ 23a:	f9 1f       	adc	r31, r25
+ 23c:	ee 59       	subi	r30, 0x9E	; 158
+ 23e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 240:	c1 81       	ldd	r28, Z+1	; 0x01
+	
+	if(Tone == last_tone){
+ 242:	2c 13       	cpse	r18, r28
+ 244:	1c c0       	rjmp	.+56     	; 0x27e <__vector_7+0xdc>
+		if(mrkup == 0){
+ 246:	20 91 d2 00 	lds	r18, 0x00D2	; 0x8000d2 <__data_end>
+ 24a:	30 91 d3 00 	lds	r19, 0x00D3	; 0x8000d3 <__data_end+0x1>
+ 24e:	23 2b       	or	r18, r19
+ 250:	89 f4       	brne	.+34     	; 0x274 <__vector_7+0xd2>
+			happyBirthday[iterator][2]++;
+ 252:	fc 01       	movw	r30, r24
+ 254:	ee 0f       	add	r30, r30
+ 256:	ff 1f       	adc	r31, r31
+ 258:	e8 0f       	add	r30, r24
+ 25a:	f9 1f       	adc	r31, r25
+ 25c:	ee 59       	subi	r30, 0x9E	; 158
+ 25e:	ff 4f       	sbci	r31, 0xFF	; 255
+ 260:	22 81       	ldd	r18, Z+2	; 0x02
+ 262:	2f 5f       	subi	r18, 0xFF	; 255
+ 264:	22 83       	std	Z+2, r18	; 0x02
+			mrkup = 1;
+ 266:	21 e0       	ldi	r18, 0x01	; 1
+ 268:	30 e0       	ldi	r19, 0x00	; 0
+ 26a:	30 93 d3 00 	sts	0x00D3, r19	; 0x8000d3 <__data_end+0x1>
+ 26e:	20 93 d2 00 	sts	0x00D2, r18	; 0x8000d2 <__data_end>
+ 272:	0b c0       	rjmp	.+22     	; 0x28a <__vector_7+0xe8>
+		}
+		else {
+			happyBirthday[iterator][2] = happyBirthday[iterator][2];
+			mrkup = 0;
+ 274:	10 92 d3 00 	sts	0x00D3, r1	; 0x8000d3 <__data_end+0x1>
+ 278:	10 92 d2 00 	sts	0x00D2, r1	; 0x8000d2 <__data_end>
+ 27c:	06 c0       	rjmp	.+12     	; 0x28a <__vector_7+0xe8>
+		}
+	}
+	else{
+		mrkup = 2;
+ 27e:	22 e0       	ldi	r18, 0x02	; 2
+ 280:	30 e0       	ldi	r19, 0x00	; 0
+ 282:	30 93 d3 00 	sts	0x00D3, r19	; 0x8000d3 <__data_end+0x1>
+ 286:	20 93 d2 00 	sts	0x00D2, r18	; 0x8000d2 <__data_end>
+	}
+	
+	  last_pos = happyBirthday[iterator][2];
+ 28a:	fc 01       	movw	r30, r24
+ 28c:	ee 0f       	add	r30, r30
+ 28e:	ff 1f       	adc	r31, r31
+ 290:	8e 0f       	add	r24, r30
+ 292:	9f 1f       	adc	r25, r31
+ 294:	fc 01       	movw	r30, r24
+ 296:	ee 59       	subi	r30, 0x9E	; 158
+ 298:	ff 4f       	sbci	r31, 0xFF	; 255
+ 29a:	82 81       	ldd	r24, Z+2	; 0x02
+ 29c:	28 2f       	mov	r18, r24
+ 29e:	30 e0       	ldi	r19, 0x00	; 0
+ 2a0:	30 93 d7 00 	sts	0x00D7, r19	; 0x8000d7 <last_pos+0x1>
+ 2a4:	20 93 d6 00 	sts	0x00D6, r18	; 0x8000d6 <last_pos>
+	lcd_gotoxy(happyBirthday[iterator][2] ,2 );
+ 2a8:	62 e0       	ldi	r22, 0x02	; 2
+ 2aa:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+	lcdData(Tone);	
+ 2ae:	8c 2f       	mov	r24, r28
+ 2b0:	0e 94 60 00 	call	0xc0	; 0xc0 <lcdData>
+	
+	if (mrkup == 1){
+ 2b4:	80 91 d2 00 	lds	r24, 0x00D2	; 0x8000d2 <__data_end>
+ 2b8:	90 91 d3 00 	lds	r25, 0x00D3	; 0x8000d3 <__data_end+0x1>
+ 2bc:	81 30       	cpi	r24, 0x01	; 1
+ 2be:	91 05       	cpc	r25, r1
+ 2c0:	79 f4       	brne	.+30     	; 0x2e0 <__vector_7+0x13e>
+		happyBirthday[iterator][2]--;
+ 2c2:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 2c6:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 2ca:	fc 01       	movw	r30, r24
+ 2cc:	ee 0f       	add	r30, r30
+ 2ce:	ff 1f       	adc	r31, r31
+ 2d0:	e8 0f       	add	r30, r24
+ 2d2:	f9 1f       	adc	r31, r25
+ 2d4:	ee 59       	subi	r30, 0x9E	; 158
+ 2d6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 2d8:	82 81       	ldd	r24, Z+2	; 0x02
+ 2da:	81 50       	subi	r24, 0x01	; 1
+ 2dc:	82 83       	std	Z+2, r24	; 0x02
+ 2de:	06 c0       	rjmp	.+12     	; 0x2ec <__vector_7+0x14a>
+	}
+	//else if(mrkup == 0)
+	//happyBirthday[iterator][2]++;
+	
+	if(mrkup == 2)
+ 2e0:	02 97       	sbiw	r24, 0x02	; 2
+ 2e2:	21 f4       	brne	.+8      	; 0x2ec <__vector_7+0x14a>
+	mrkup = 0;
+ 2e4:	10 92 d3 00 	sts	0x00D3, r1	; 0x8000d3 <__data_end+0x1>
+ 2e8:	10 92 d2 00 	sts	0x00D2, r1	; 0x8000d2 <__data_end>
+	
+	
+	if(iterator == 25){
+ 2ec:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 2f0:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 2f4:	49 97       	sbiw	r24, 0x19	; 25
+ 2f6:	21 f5       	brne	.+72     	; 0x340 <__vector_7+0x19e>
+        LCD_CPRT &= ~(1 << LCD_EN);
+ 2f8:	c2 98       	cbi	0x18, 2	; 24
+        lcdCommand(0x01);   // clear lcd
+ 2fa:	81 e0       	ldi	r24, 0x01	; 1
+ 2fc:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+ 300:	83 ef       	ldi	r24, 0xF3	; 243
+ 302:	91 e0       	ldi	r25, 0x01	; 1
+ 304:	01 97       	sbiw	r24, 0x01	; 1
+ 306:	f1 f7       	brne	.-4      	; 0x304 <__vector_7+0x162>
+ 308:	00 c0       	rjmp	.+0      	; 0x30a <__vector_7+0x168>
+ 30a:	00 00       	nop
+        _delay_us(2000);
+		lcd_print("happy Birthday");
+ 30c:	8d ea       	ldi	r24, 0xAD	; 173
+ 30e:	90 e0       	ldi	r25, 0x00	; 0
+ 310:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+		lcd_gotoxy(6,2);
+ 314:	62 e0       	ldi	r22, 0x02	; 2
+ 316:	86 e0       	ldi	r24, 0x06	; 6
+ 318:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+		lcd_print("Start");
+ 31c:	8c eb       	ldi	r24, 0xBC	; 188
+ 31e:	90 e0       	ldi	r25, 0x00	; 0
+ 320:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+		OCR1A = 200;
+ 324:	88 ec       	ldi	r24, 0xC8	; 200
+ 326:	90 e0       	ldi	r25, 0x00	; 0
+ 328:	9b bd       	out	0x2b, r25	; 43
+ 32a:	8a bd       	out	0x2a, r24	; 42
+		markStart = 1;
+ 32c:	81 e0       	ldi	r24, 0x01	; 1
+ 32e:	90 e0       	ldi	r25, 0x00	; 0
+ 330:	90 93 61 00 	sts	0x0061, r25	; 0x800061 <__data_start+0x1>
+ 334:	80 93 60 00 	sts	0x0060, r24	; 0x800060 <__data_start>
+		iterator =0;
+ 338:	10 92 d5 00 	sts	0x00D5, r1	; 0x8000d5 <iterator+0x1>
+ 33c:	10 92 d4 00 	sts	0x00D4, r1	; 0x8000d4 <iterator>
+		return;
+	}
+	} 
+	
+}
+ 340:	ff 91       	pop	r31
+ 342:	ef 91       	pop	r30
+ 344:	cf 91       	pop	r28
+ 346:	bf 91       	pop	r27
+ 348:	af 91       	pop	r26
+ 34a:	9f 91       	pop	r25
+ 34c:	8f 91       	pop	r24
+ 34e:	7f 91       	pop	r23
+ 350:	6f 91       	pop	r22
+ 352:	5f 91       	pop	r21
+ 354:	4f 91       	pop	r20
+ 356:	3f 91       	pop	r19
+ 358:	2f 91       	pop	r18
+ 35a:	0f 90       	pop	r0
+ 35c:	0f be       	out	0x3f, r0	; 63
+ 35e:	0f 90       	pop	r0
+ 360:	1f 90       	pop	r1
+ 362:	18 95       	reti
+
+00000364 <main>:
+	                         ,{1 , 'G' , 9} , {2 , 'G' , 9} ,{2 ,'E' , 5} , {2 , 'C' , 1} , {2 ,'B' , 13} ,{4 ,'A' ,11} , {1 ,'F' , 7} ,{1 ,'F' , 7}, {2 , 'E' ,5 } ,{2 ,'C' , 1} , {2 , 'D' ,3} , {8 , 'C' ,1}} ;
+int mrkup = 0;
+int markStart = 1; 
+int last_pos;
+static inline void initTimer0(void) {
+	TCCR0 |= (1 << WGM01); /* CTC mode */
+ 364:	83 b7       	in	r24, 0x33	; 51
+ 366:	88 60       	ori	r24, 0x08	; 8
+ 368:	83 bf       	out	0x33, r24	; 51
+	TCCR0 |= (1 << COM00); /* Toggles pin each cycle through */
+ 36a:	83 b7       	in	r24, 0x33	; 51
+ 36c:	80 61       	ori	r24, 0x10	; 16
+ 36e:	83 bf       	out	0x33, r24	; 51
+	TCCR0 |= (1 << CS01) ; /* CPU clock / /1 */ /*count in microsetonds*/
+ 370:	83 b7       	in	r24, 0x33	; 51
+ 372:	82 60       	ori	r24, 0x02	; 2
+ 374:	83 bf       	out	0x33, r24	; 51
+}
+
+int main(void)
+{
+	initTimer0();
+	initTimer1();
+ 376:	0e 94 ca 00 	call	0x194	; 0x194 <initTimer1>
+	lcd_init();
+ 37a:	0e 94 73 00 	call	0xe6	; 0xe6 <lcd_init>
+	OCR1A = 200;
+ 37e:	88 ec       	ldi	r24, 0xC8	; 200
+ 380:	90 e0       	ldi	r25, 0x00	; 0
+ 382:	9b bd       	out	0x2b, r25	; 43
+ 384:	8a bd       	out	0x2a, r24	; 42
+	sei();
+ 386:	78 94       	sei
+	lcd_print("Happy Birthday");
+ 388:	82 ec       	ldi	r24, 0xC2	; 194
+ 38a:	90 e0       	ldi	r25, 0x00	; 0
+ 38c:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+	lcd_gotoxy(6,2);
+ 390:	62 e0       	ldi	r22, 0x02	; 2
+ 392:	86 e0       	ldi	r24, 0x06	; 6
+ 394:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+	lcd_print("Start"); 
+ 398:	8c eb       	ldi	r24, 0xBC	; 188
+ 39a:	90 e0       	ldi	r25, 0x00	; 0
+ 39c:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+	int s = 0;
+	
+	BUTTON_DDR &= ~(1 << C | 1 << D | 1 << E | 1 << F | 1 << G | 1 << A | 1 << B | 1<< START); 
+ 3a0:	8a b3       	in	r24, 0x1a	; 26
+ 3a2:	1a ba       	out	0x1a, r1	; 26
+	BUTTON_PRT |= (1 << C | 1 << D | 1 << E | 1 << F | 1 << G | 1 << A | 1 << B | 1 << START);
+ 3a4:	8b b3       	in	r24, 0x1b	; 27
+ 3a6:	8f ef       	ldi	r24, 0xFF	; 255
+ 3a8:	8b bb       	out	0x1b, r24	; 27
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3aa:	2f e7       	ldi	r18, 0x7F	; 127
+ 3ac:	8a e1       	ldi	r24, 0x1A	; 26
+ 3ae:	96 e0       	ldi	r25, 0x06	; 6
+ 3b0:	21 50       	subi	r18, 0x01	; 1
+ 3b2:	80 40       	sbci	r24, 0x00	; 0
+ 3b4:	90 40       	sbci	r25, 0x00	; 0
+ 3b6:	e1 f7       	brne	.-8      	; 0x3b0 <main+0x4c>
+ 3b8:	00 c0       	rjmp	.+0      	; 0x3ba <main+0x56>
+ 3ba:	00 00       	nop
+	int TF = 62500/T_F ;
+	int TG = 62500/T_G ;
+	int TA = 62500/T_A ;
+	int TB = 62500/T_B ;
+		_delay_ms(2000);
+		while( (BUTTON_PIN & (1 << START)) != 0 );
+ 3bc:	cf 99       	sbic	0x19, 7	; 25
+ 3be:	fe cf       	rjmp	.-4      	; 0x3bc <main+0x58>
+			LCD_CPRT &= ~(1 << LCD_EN);
+ 3c0:	c2 98       	cbi	0x18, 2	; 24
+			lcdCommand(0x01);   // clear lcd
+ 3c2:	81 e0       	ldi	r24, 0x01	; 1
+ 3c4:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+	#else
+		//round up by default
+		__ticks_dc = (uint32_t)(ceil(fabs(__tmp)));
+	#endif
+
+	__builtin_avr_delay_cycles(__ticks_dc);
+ 3c8:	83 ef       	ldi	r24, 0xF3	; 243
+ 3ca:	91 e0       	ldi	r25, 0x01	; 1
+ 3cc:	01 97       	sbiw	r24, 0x01	; 1
+ 3ce:	f1 f7       	brne	.-4      	; 0x3cc <main+0x68>
+ 3d0:	00 c0       	rjmp	.+0      	; 0x3d2 <main+0x6e>
+ 3d2:	00 00       	nop
+			_delay_us(2000);
+			lcd_gotoxy(1 , 1);
+ 3d4:	61 e0       	ldi	r22, 0x01	; 1
+ 3d6:	81 e0       	ldi	r24, 0x01	; 1
+ 3d8:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+			lcd_print("Happy Birthday");
+ 3dc:	82 ec       	ldi	r24, 0xC2	; 194
+ 3de:	90 e0       	ldi	r25, 0x00	; 0
+ 3e0:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+			OCR1A =  happyBirthday[iterator][0]  * TonePeriodUnit;
+ 3e4:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 3e8:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 3ec:	fc 01       	movw	r30, r24
+ 3ee:	ee 0f       	add	r30, r30
+ 3f0:	ff 1f       	adc	r31, r31
+ 3f2:	8e 0f       	add	r24, r30
+ 3f4:	9f 1f       	adc	r25, r31
+ 3f6:	fc 01       	movw	r30, r24
+ 3f8:	ee 59       	subi	r30, 0x9E	; 158
+ 3fa:	ff 4f       	sbci	r31, 0xFF	; 255
+ 3fc:	40 81       	ld	r20, Z
+ 3fe:	20 ed       	ldi	r18, 0xD0	; 208
+ 400:	37 e0       	ldi	r19, 0x07	; 7
+ 402:	42 9f       	mul	r20, r18
+ 404:	c0 01       	movw	r24, r0
+ 406:	43 9f       	mul	r20, r19
+ 408:	90 0d       	add	r25, r0
+ 40a:	11 24       	eor	r1, r1
+ 40c:	9b bd       	out	0x2b, r25	; 43
+ 40e:	8a bd       	out	0x2a, r24	; 42
+			char Tone = happyBirthday[iterator][1] ;
+ 410:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 414:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 418:	fc 01       	movw	r30, r24
+ 41a:	ee 0f       	add	r30, r30
+ 41c:	ff 1f       	adc	r31, r31
+ 41e:	8e 0f       	add	r24, r30
+ 420:	9f 1f       	adc	r25, r31
+ 422:	fc 01       	movw	r30, r24
+ 424:	ee 59       	subi	r30, 0x9E	; 158
+ 426:	ff 4f       	sbci	r31, 0xFF	; 255
+ 428:	c1 81       	ldd	r28, Z+1	; 0x01
+			last_pos = happyBirthday[iterator][2];
+ 42a:	82 81       	ldd	r24, Z+2	; 0x02
+ 42c:	28 2f       	mov	r18, r24
+ 42e:	30 e0       	ldi	r19, 0x00	; 0
+ 430:	30 93 d7 00 	sts	0x00D7, r19	; 0x8000d7 <last_pos+0x1>
+ 434:	20 93 d6 00 	sts	0x00D6, r18	; 0x8000d6 <last_pos>
+			lcd_gotoxy(happyBirthday[iterator][2] , 2 );
+ 438:	62 e0       	ldi	r22, 0x02	; 2
+ 43a:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+			lcdData(Tone);
+ 43e:	8c 2f       	mov	r24, r28
+ 440:	0e 94 60 00 	call	0xc0	; 0xc0 <lcdData>
+			markStart = 0;
+ 444:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__data_start+0x1>
+ 448:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__data_start>
+			LCD_CPRT &= ~(1 << LCD_EN);
+			lcdCommand(0x01);   // clear lcd
+			_delay_us(2000);
+			lcd_gotoxy(1 , 1);
+			lcd_print("Happy Birthday");
+			OCR1A = happyBirthday[iterator][0]  * TonePeriodUnit;
+ 44c:	c0 ed       	ldi	r28, 0xD0	; 208
+ 44e:	d7 e0       	ldi	r29, 0x07	; 7
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 450:	0f 2e       	mov	r0, r31
+ 452:	fe ee       	ldi	r31, 0xEE	; 238
+ 454:	cf 2e       	mov	r12, r31
+ 456:	f0 2d       	mov	r31, r0
+ 458:	0f 2e       	mov	r0, r31
+ 45a:	f4 ed       	ldi	r31, 0xD4	; 212
+ 45c:	df 2e       	mov	r13, r31
+ 45e:	f0 2d       	mov	r31, r0
+ 460:	0f 2e       	mov	r0, r31
+ 462:	fd eb       	ldi	r31, 0xBD	; 189
+ 464:	ef 2e       	mov	r14, r31
+ 466:	f0 2d       	mov	r31, r0
+ 468:	0f 2e       	mov	r0, r31
+ 46a:	f3 eb       	ldi	r31, 0xB3	; 179
+ 46c:	ff 2e       	mov	r15, r31
+ 46e:	f0 2d       	mov	r31, r0
+ 470:	0f e9       	ldi	r16, 0x9F	; 159
+ 472:	1e e8       	ldi	r17, 0x8E	; 142
+			lcdData(Tone);
+			markStart = 0;
+					
+    while (1) 
+    {
+		if(markStart == 1){
+ 474:	80 91 60 00 	lds	r24, 0x0060	; 0x800060 <__data_start>
+ 478:	90 91 61 00 	lds	r25, 0x0061	; 0x800061 <__data_start+0x1>
+ 47c:	01 97       	sbiw	r24, 0x01	; 1
+ 47e:	09 f0       	breq	.+2      	; 0x482 <__LOCK_REGION_LENGTH__+0x82>
+ 480:	45 c0       	rjmp	.+138    	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
+		if( (BUTTON_PIN & (1 << START)) == 0 ){
+ 482:	cf 99       	sbic	0x19, 7	; 25
+ 484:	43 c0       	rjmp	.+134    	; 0x50c <__LOCK_REGION_LENGTH__+0x10c>
+			LCD_CPRT &= ~(1 << LCD_EN);
+ 486:	c2 98       	cbi	0x18, 2	; 24
+			lcdCommand(0x01);   // clear lcd
+ 488:	81 e0       	ldi	r24, 0x01	; 1
+ 48a:	0e 94 49 00 	call	0x92	; 0x92 <lcdCommand>
+ 48e:	83 ef       	ldi	r24, 0xF3	; 243
+ 490:	91 e0       	ldi	r25, 0x01	; 1
+ 492:	01 97       	sbiw	r24, 0x01	; 1
+ 494:	f1 f7       	brne	.-4      	; 0x492 <__LOCK_REGION_LENGTH__+0x92>
+ 496:	00 c0       	rjmp	.+0      	; 0x498 <__LOCK_REGION_LENGTH__+0x98>
+ 498:	00 00       	nop
+			_delay_us(2000);
+			lcd_gotoxy(1 , 1);
+ 49a:	61 e0       	ldi	r22, 0x01	; 1
+ 49c:	81 e0       	ldi	r24, 0x01	; 1
+ 49e:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+			lcd_print("Happy Birthday");
+ 4a2:	82 ec       	ldi	r24, 0xC2	; 194
+ 4a4:	90 e0       	ldi	r25, 0x00	; 0
+ 4a6:	0e 94 b4 00 	call	0x168	; 0x168 <lcd_print>
+			OCR1A = happyBirthday[iterator][0]  * TonePeriodUnit;
+ 4aa:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 4ae:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 4b2:	fc 01       	movw	r30, r24
+ 4b4:	ee 0f       	add	r30, r30
+ 4b6:	ff 1f       	adc	r31, r31
+ 4b8:	8e 0f       	add	r24, r30
+ 4ba:	9f 1f       	adc	r25, r31
+ 4bc:	fc 01       	movw	r30, r24
+ 4be:	ee 59       	subi	r30, 0x9E	; 158
+ 4c0:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4c2:	20 81       	ld	r18, Z
+ 4c4:	2c 9f       	mul	r18, r28
+ 4c6:	c0 01       	movw	r24, r0
+ 4c8:	2d 9f       	mul	r18, r29
+ 4ca:	90 0d       	add	r25, r0
+ 4cc:	11 24       	eor	r1, r1
+ 4ce:	9b bd       	out	0x2b, r25	; 43
+ 4d0:	8a bd       	out	0x2a, r24	; 42
+			char Tone = happyBirthday[iterator][1] ;
+ 4d2:	80 91 d4 00 	lds	r24, 0x00D4	; 0x8000d4 <iterator>
+ 4d6:	90 91 d5 00 	lds	r25, 0x00D5	; 0x8000d5 <iterator+0x1>
+ 4da:	fc 01       	movw	r30, r24
+ 4dc:	ee 0f       	add	r30, r30
+ 4de:	ff 1f       	adc	r31, r31
+ 4e0:	e8 0f       	add	r30, r24
+ 4e2:	f9 1f       	adc	r31, r25
+ 4e4:	ee 59       	subi	r30, 0x9E	; 158
+ 4e6:	ff 4f       	sbci	r31, 0xFF	; 255
+ 4e8:	b1 80       	ldd	r11, Z+1	; 0x01
+			last_pos = happyBirthday[iterator][2];
+ 4ea:	82 81       	ldd	r24, Z+2	; 0x02
+ 4ec:	28 2f       	mov	r18, r24
+ 4ee:	30 e0       	ldi	r19, 0x00	; 0
+ 4f0:	30 93 d7 00 	sts	0x00D7, r19	; 0x8000d7 <last_pos+0x1>
+ 4f4:	20 93 d6 00 	sts	0x00D6, r18	; 0x8000d6 <last_pos>
+			lcd_gotoxy(happyBirthday[iterator][2] , 2 );
+ 4f8:	62 e0       	ldi	r22, 0x02	; 2
+ 4fa:	0e 94 93 00 	call	0x126	; 0x126 <lcd_gotoxy>
+			lcdData(Tone);
+ 4fe:	8b 2d       	mov	r24, r11
+ 500:	0e 94 60 00 	call	0xc0	; 0xc0 <lcdData>
+			markStart = 0;
+ 504:	10 92 61 00 	sts	0x0061, r1	; 0x800061 <__data_start+0x1>
+ 508:	10 92 60 00 	sts	0x0060, r1	; 0x800060 <__data_start>
+			}
+		}
+		if( (BUTTON_PIN & (1 << C)) == 0 ){
+ 50c:	c8 99       	sbic	0x19, 0	; 25
+ 50e:	05 c0       	rjmp	.+10     	; 0x51a <__LOCK_REGION_LENGTH__+0x11a>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 510:	cc be       	out	0x3c, r12	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 512:	bb 9a       	sbi	0x17, 3	; 23
+			markStart = 0;
+			}
+		}
+		if( (BUTTON_PIN & (1 << C)) == 0 ){
+			playNote(TC );
+			while( (BUTTON_PIN & (1 << C)) == 0 );
+ 514:	c8 9b       	sbis	0x19, 0	; 25
+ 516:	fe cf       	rjmp	.-4      	; 0x514 <__LOCK_REGION_LENGTH__+0x114>
+			SPEAKER_DDR &= ~(1 << SPEAKER); 
+ 518:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << D)) == 0 ){
+ 51a:	c9 99       	sbic	0x19, 1	; 25
+ 51c:	05 c0       	rjmp	.+10     	; 0x528 <__LOCK_REGION_LENGTH__+0x128>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 51e:	dc be       	out	0x3c, r13	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 520:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << C)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER); 
+		}
+		if( (BUTTON_PIN & (1 << D)) == 0 ){
+			playNote(TD );
+			while( (BUTTON_PIN & (1 << D)) == 0 );
+ 522:	c9 9b       	sbis	0x19, 1	; 25
+ 524:	fe cf       	rjmp	.-4      	; 0x522 <__LOCK_REGION_LENGTH__+0x122>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 526:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << E)) == 0 ){
+ 528:	ca 99       	sbic	0x19, 2	; 25
+ 52a:	05 c0       	rjmp	.+10     	; 0x536 <__LOCK_REGION_LENGTH__+0x136>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 52c:	ec be       	out	0x3c, r14	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 52e:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << D)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+		}
+		if( (BUTTON_PIN & (1 << E)) == 0 ){
+			playNote(TE );
+			while( (BUTTON_PIN & (1 << E)) == 0 );
+ 530:	ca 9b       	sbis	0x19, 2	; 25
+ 532:	fe cf       	rjmp	.-4      	; 0x530 <__LOCK_REGION_LENGTH__+0x130>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 534:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << F)) == 0 ){
+ 536:	cb 99       	sbic	0x19, 3	; 25
+ 538:	05 c0       	rjmp	.+10     	; 0x544 <__LOCK_REGION_LENGTH__+0x144>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 53a:	fc be       	out	0x3c, r15	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 53c:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << E)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+		}
+		if( (BUTTON_PIN & (1 << F)) == 0 ){
+			playNote(TF );
+			while( (BUTTON_PIN & (1 << F)) == 0 );
+ 53e:	cb 9b       	sbis	0x19, 3	; 25
+ 540:	fe cf       	rjmp	.-4      	; 0x53e <__LOCK_REGION_LENGTH__+0x13e>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 542:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << G)) == 0 ){
+ 544:	cc 99       	sbic	0x19, 4	; 25
+ 546:	05 c0       	rjmp	.+10     	; 0x552 <__LOCK_REGION_LENGTH__+0x152>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 548:	0c bf       	out	0x3c, r16	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 54a:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << F)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+		}
+		if( (BUTTON_PIN & (1 << G)) == 0 ){
+			playNote(TG );
+			while( (BUTTON_PIN & (1 << G)) == 0 );
+ 54c:	cc 9b       	sbis	0x19, 4	; 25
+ 54e:	fe cf       	rjmp	.-4      	; 0x54c <__LOCK_REGION_LENGTH__+0x14c>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 550:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << A)) == 0 ){
+ 552:	cd 99       	sbic	0x19, 5	; 25
+ 554:	05 c0       	rjmp	.+10     	; 0x560 <__LOCK_REGION_LENGTH__+0x160>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 556:	1c bf       	out	0x3c, r17	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 558:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << G)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+		}
+		if( (BUTTON_PIN & (1 << A)) == 0 ){
+			playNote(TA );
+			while( (BUTTON_PIN & (1 << A)) == 0 );
+ 55a:	cd 9b       	sbis	0x19, 5	; 25
+ 55c:	fe cf       	rjmp	.-4      	; 0x55a <__LOCK_REGION_LENGTH__+0x15a>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 55e:	bb 98       	cbi	0x17, 3	; 23
+		}
+		if( (BUTTON_PIN & (1 << B)) == 0 ){
+ 560:	ce 99       	sbic	0x19, 6	; 25
+ 562:	88 cf       	rjmp	.-240    	; 0x474 <__LOCK_REGION_LENGTH__+0x74>
+	}
+	} 
+	
+}
+static inline void playNote(uint8_t HalfPeriod) {
+	OCR0 = HalfPeriod; /* set pitch */
+ 564:	8e e7       	ldi	r24, 0x7E	; 126
+ 566:	8c bf       	out	0x3c, r24	; 60
+	SPEAKER_DDR |= (1 << SPEAKER); /* enable output on speaker */
+ 568:	bb 9a       	sbi	0x17, 3	; 23
+			while( (BUTTON_PIN & (1 << A)) == 0 );
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+		}
+		if( (BUTTON_PIN & (1 << B)) == 0 ){
+			playNote(TB );
+			while( (BUTTON_PIN & (1 << B)) == 0 );
+ 56a:	ce 9b       	sbis	0x19, 6	; 25
+ 56c:	fe cf       	rjmp	.-4      	; 0x56a <__LOCK_REGION_LENGTH__+0x16a>
+			SPEAKER_DDR &= ~(1 << SPEAKER);
+ 56e:	bb 98       	cbi	0x17, 3	; 23
+ 570:	81 cf       	rjmp	.-254    	; 0x474 <__LOCK_REGION_LENGTH__+0x74>
+
+00000572 <_exit>:
+ 572:	f8 94       	cli
+
+00000574 <__stop_program>:
+ 574:	ff cf       	rjmp	.-2      	; 0x574 <__stop_program>
