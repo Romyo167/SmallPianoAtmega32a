@@ -11,4 +11,4 @@ You have to connect
 
 to the appropriate pins of your microcontroller.
 Then burn the code and play.
-The code is accompanied with comment which will help you understand it.
+The code is accompanied with comments which will help you understand it.
