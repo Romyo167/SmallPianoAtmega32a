@@ -7,6 +7,8 @@ You have to connect
 - Buttons
 - Speaker
 - LCD 
+
+
 to the appropriate pins of your microcontroller.
 Then burn the code and play.
 The code is accompanied with comment which will help you understand it.
